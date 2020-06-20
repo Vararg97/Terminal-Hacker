@@ -1,0 +1,50 @@
+body {
+  background: white;
+}
+
+canvas {
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display: block;
+  height: 80%;
+  width: 80%;
+}
+
+.terminal-border-Box {
+  border: 35px solid grey;
+  border-image-source: url(/images/monitor.png);
+  border-image-slice: 35;
+  border-image-outset: 1;
+  border-image-repeat: stretch;  
+}
+
+/*
+Credit to Chris Coyier for this old school terminal looking trick
+*/
+.terminalBackground {
+  background-color: black;
+  background-image: radial-gradient(
+    rgba(0, 150, 0, 0.75), black 120%
+  );	
+  color: white;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #C8C8C8;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(black, 0.15),
+      rgba(black, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }    
+}
+
