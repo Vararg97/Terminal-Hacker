@@ -1,5 +1,6 @@
 let canvas, ctx;
 let terminalStr = '(Passkey) ~$ '
+let currentEntry = '';
 let textPosX, textPosY;
 //get DPI
 let dpi = window.devicePixelRatio;
@@ -10,14 +11,7 @@ function init () {
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
-  	ctx.save();
-	ctx.fillStyle = 'white';
-	// text specific styles
-	ctx.font = '20px Inconsolata, monospace';
-	ctx.textAlign = 'left';
-	ctx.textBaseline = 'alphabetic';
-	ctx.fillText(terminalStr, textPosX, textPosY);
-	ctx.restore();
+  	writeText();
 }
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
 function fix_dpi() {
@@ -32,4 +26,30 @@ function fix_dpi() {
 	canvas.setAttribute('width', style_width * dpi);
 }
 
+function writeText(text = '') {
+  	ctx.save();
+	ctx.fillStyle = 'white';
+	// text specific styles
+	ctx.font = '20px Inconsolata, monospace';
+	ctx.textAlign = 'left';
+	ctx.textBaseline = 'alphabetic';
+	ctx.shadowColor = "#000"
+	ctx.shadowOffsetX = textPosX + 8;
+	ctx.shadowOffsetY = 0;
+	ctx.shadowBlur = 8;
+	ctx.fillText(terminalStr + text, textPosX, textPosY);
+	ctx.restore();
+}
+
 document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("keydown", event => {
+  if (event.isComposing || event.keyCode === 229) {
+    return;
+  }
+  var inp = String.fromCharCode(event.keyCode);
+  //key code is alphanumeric or hypen or underscore
+  if (/[a-zA-Z0-9-_ ]/.test(inp)) {
+  	currentEntry+= inp;
+  	writeText(currentEntry);
+  }
+});
