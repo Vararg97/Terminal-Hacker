@@ -1,3 +1,2 @@
 # Terminal-Hacker
-Hi!
-U eat michrochips.
+Hi! U eat michrochips.
