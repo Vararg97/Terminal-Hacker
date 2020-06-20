@@ -2,13 +2,16 @@ body {
   background: white;
 }
 
+.outer {
+	position: relative;
+  	margin: 0 auto;
+	width: 80%;
+	padding-bottom: 35px;
+}
 canvas {
-  padding: 0;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-  display: block;
-  height: 80%;
-  width: 80%;
+  position: abolute;
+  height: 100%;
+  width: 100%;
 }
 
 .terminal-border-Box {
@@ -27,9 +30,6 @@ Credit to Chris Coyier for this old school terminal looking trick
   background-image: radial-gradient(
     rgba(0, 150, 0, 0.75), black 120%
   );	
-  color: white;
-  font: 1.3rem Inconsolata, monospace;
-  text-shadow: 0 0 5px #C8C8C8;
 }
 .terminalBackground::after {
     content: "";
