@@ -11,7 +11,7 @@ function init () {
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
-  	writeText();
+  	writeText("Hi!");
 }
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
 function fix_dpi() {
