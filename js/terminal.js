@@ -52,4 +52,12 @@ document.addEventListener("keydown", event => {
   	currentEntry+= inp;
   	writeText(currentEntry);
   }
+  //Escape key pressed
+  if (inp === 27) {
+
+  }
+  //Enter key pressed
+  if (inp === 13) {
+
+  }
 });
