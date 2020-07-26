@@ -1,9 +1,10 @@
-let canvas, ctx;
+let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-let textPosX, textPosY;
-let currentTextWidth;
-let currentTextHeight;
+const DIFFICULTY = 10;
+let puzzleImage;
+let tries = 3;
+
 //get DPI
 let dpi = window.devicePixelRatio;
 
@@ -13,8 +14,20 @@ function init () {
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
+  	//Load the first image/challenge
   	redraw();
+  	loadPuzzle();
 }
+
+function loadPuzzle() {
+	fetch("data/puzzles.json").then(response => response.json()).then(json => {
+		let puzzle = json[0];
+		codeName = puzzle.codeName;
+		puzzleImage = new PuzzleImage(DIFFICULTY, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
+		puzzleImage.loadImage();
+	});
+}
+
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
 function fix_dpi() {
 	//get CSS height
@@ -33,7 +46,10 @@ function redraw(text) {
   	ctx.save();
   	ctx.clearRect(0, 0, canvas.width, canvas.height);   
   	writeText(text);
-	ctx.restore();
+  	if(puzzleImage) {
+  		puzzleImage.drawPieces();
+  	}
+	//ctx.restore();
 }
 
 function writeText(text = '') {
@@ -53,8 +69,7 @@ function writeText(text = '') {
 	ctx.fillText(terminalStr + text, textPosX, textPosY);
 }
 
-document.addEventListener('DOMContentLoaded', init);
-document.addEventListener("keydown", event => {
+function handleKeydown(event) {
   if (event.isComposing || event.keyCode === 229) {
     return;
   }
@@ -70,6 +85,7 @@ document.addEventListener("keydown", event => {
   		break;
   	case 13:
   		//Enter key pressed
+  		checkCode();
   		break;
 	case 8: 
 		//Delete key pressed
@@ -80,5 +96,28 @@ document.addEventListener("keydown", event => {
   		}
   		redraw(currentEntry);
 		break;
-  }
-});
+  }	
+}
+
+function checkCode() {
+	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
+		alert("YOU WIN!");
+		currentEntry = '';
+		tries = 3;
+	} else {
+		tries--;
+		if(tries <= 0) {
+			alert("You Failed!");
+			currentEntry = '';
+			redraw(currentEntry);
+		} else {
+			alert("Try Again. You have " + tries + " tries remaining.");
+			tries = 3;
+			currentEntry = '';
+			redraw(currentEntry);
+		} 
+	}
+}
+
+document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("keydown", handleKeydown);
