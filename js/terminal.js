@@ -11,7 +11,6 @@ function init () {
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
-  	writeText("Hi!");
 }
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
 function fix_dpi() {
@@ -50,6 +49,14 @@ document.addEventListener("keydown", event => {
   //key code is alphanumeric or hypen or underscore
   if (/[a-zA-Z0-9-_ ]/.test(inp)) {
   	currentEntry+= inp;
+  	writeText(currentEntry);
+  }
+  if(event.keyCode === 8) {
+  	if (currentEntry.length == 1) {
+  	currentEntry = ""
+  } else {
+  currentEntry = currentEntry.slice(0,-1);
+}
   	writeText(currentEntry);
   }
 });
