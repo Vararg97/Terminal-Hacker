@@ -1,7 +1,7 @@
 let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-const DIFFICULTY = 10;
+const DIFFICULTY = 20;
 let puzzleImage;
 let tries = 3;
 
@@ -21,7 +21,7 @@ function init () {
 
 function loadPuzzle() {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
-		let puzzle = json[0];
+		let puzzle = json[Math.floor(Math.random() * (json.length))];
 		codeName = puzzle.codeName;
 		puzzleImage = new PuzzleImage(DIFFICULTY, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
 		puzzleImage.loadImage();
@@ -110,11 +110,11 @@ function checkCode() {
 		tries--;
 		if(tries <= 0) {
 			alert("You Failed!");
+			tries = 3;
 			currentEntry = '';
 			redraw(currentEntry);
 		} else {
 			alert("Try Again. You have " + tries + " tries remaining.");
-			tries = 3;
 			currentEntry = '';
 			redraw(currentEntry);
 		} 

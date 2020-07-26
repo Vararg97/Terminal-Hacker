@@ -1,4 +1,22 @@
-[{
-	"codeName" : "guitar",
-	"image" : "guitar.jpg"	
-}]
+[
+	{
+		"codeName" : "guitar",
+		"image" : "guitar.jpg"	
+	},
+	{
+		"codeName" : "chicken",
+		"image" : "chicken.jpg"			
+	},
+	{
+		"codeName" : "fishing rod",
+		"image" : "Fishing-Rod.jpg"			
+	},
+	{
+		"codeName" : "binoculars",
+		"image" : "binoculars.jpg"			
+	},
+	{
+		"codeName" : "scissors",
+		"image" : "scissors.jpg"			
+	}
+]
