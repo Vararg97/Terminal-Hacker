@@ -1,3 +1,5 @@
+//Core of this functionality is thanks to the tutorial at
+// https://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 class PuzzleImage {
     constructor(difficulty, imageWidth, imageHeight, imageFile, ctx) {
         this.ctx = ctx;
@@ -62,6 +64,8 @@ class PuzzleImage {
     }
 
     resizeImage = function() {
+        //Get the correct image size/fit for our canvas so we can use that 
+        //to draw the puzzle slices
         let imgCanvas = this.fitImageOntoCanvas(this.rawImage);
         this.image.addEventListener('load', (function() {
             this.scrambleImage();
@@ -70,10 +74,8 @@ class PuzzleImage {
         this.image.src = imgCanvas.toDataURL();
     }
 
-    //Resize the image    
+    //Resize the image on an offscreen canvas  
     fitImageOntoCanvas = function(img) {
-        // calculate the scaling factor to resize new image to 
-        //     fit MAX dimensions without overflow
         let scalingFactor = Math.min((this.imageWidth/img.width),(this.imageHeight/img.height));
 
         // calc the resized img dimensions

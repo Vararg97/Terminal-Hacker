@@ -52,6 +52,7 @@ function redraw(text) {
 	//ctx.restore();
 }
 
+//Write our keyed in text onto the screen
 function writeText(text = '') {
   	//Clear before redraw
 	ctx.fillStyle = 'white';
@@ -99,6 +100,7 @@ function handleKeydown(event) {
   }	
 }
 
+//Check if we've submitted the correct code/passkey to win
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
 		alert("YOU WIN!");

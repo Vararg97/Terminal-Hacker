@@ -23,7 +23,7 @@ canvas {
 }
 
 /*
-Credit to Chris Coyier for this old school terminal looking trick
+Credit to Chris Coyier for this old school terminal looking trick as published on https://css-tricks.com/
 */
 .terminalBackground {
   background-color: black;
