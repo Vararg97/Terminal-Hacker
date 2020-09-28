@@ -1,7 +1,10 @@
-let canvas, ctx;
+let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-let textPosX, textPosY;
+const DIFFICULTY = 20;
+let puzzleImage;
+let tries = 3;
+
 //get DPI
 let dpi = window.devicePixelRatio;
 
@@ -11,7 +14,20 @@ function init () {
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
+  	//Load the first image/challenge
+  	redraw();
+  	loadPuzzle();
 }
+
+function loadPuzzle() {
+	fetch("data/puzzles.json").then(response => response.json()).then(json => {
+		let puzzle = json[Math.floor(Math.random() * (json.length))];
+		codeName = puzzle.codeName;
+		puzzleImage = new PuzzleImage(DIFFICULTY, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
+		puzzleImage.loadImage();
+	});
+}
+
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
 function fix_dpi() {
 	//get CSS height
@@ -25,23 +41,36 @@ function fix_dpi() {
 	canvas.setAttribute('width', style_width * dpi);
 }
 
-function writeText(text = '') {
+function redraw(text) {
+	fix_dpi();
   	ctx.save();
+  	ctx.clearRect(0, 0, canvas.width, canvas.height);   
+  	writeText(text);
+  	if(puzzleImage) {
+  		puzzleImage.drawPieces();
+  	}
+	//ctx.restore();
+}
+
+//Write our keyed in text onto the screen
+function writeText(text = '') {
+  	//Clear before redraw
 	ctx.fillStyle = 'white';
 	// text specific styles
-	ctx.font = '20px Inconsolata, monospace';
+	ctx.font = '15pt Inconsolata, monospace';
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'alphabetic';
 	ctx.shadowColor = "#000"
 	ctx.shadowOffsetX = textPosX + 8;
 	ctx.shadowOffsetY = 0;
 	ctx.shadowBlur = 8;
+	//Set the current values for the next path so we can clear before redraw
+	currentTextWidth = ctx.measureText(terminalStr + text).width;
+	currentTextHeight = parseInt(ctx.font.match(/\d+/), 10);
 	ctx.fillText(terminalStr + text, textPosX, textPosY);
-	ctx.restore();
 }
 
-document.addEventListener('DOMContentLoaded', init);
-document.addEventListener("keydown", event => {
+function handleKeydown(event) {
   if (event.isComposing || event.keyCode === 229) {
     return;
   }
@@ -49,14 +78,48 @@ document.addEventListener("keydown", event => {
   //key code is alphanumeric or hypen or underscore
   if (/[a-zA-Z0-9-_ ]/.test(inp)) {
   	currentEntry+= inp;
-  	writeText(currentEntry);
+  	redraw(currentEntry);
   }
-  if(event.keyCode === 8) {
-  	if (currentEntry.length == 1) {
-  	currentEntry = ""
-  } else {
-  currentEntry = currentEntry.slice(0,-1);
+  switch (event.keyCode) {
+  	case 27: 
+  		//Escape key pressed
+  		break;
+  	case 13:
+  		//Enter key pressed
+  		checkCode();
+  		break;
+	case 8: 
+		//Delete key pressed
+	  	if(currentEntry.lenth <= 0) {
+	  		currentEntry = '';
+  		} else {
+  			currentEntry = currentEntry.slice(0, -1);
+  		}
+  		redraw(currentEntry);
+		break;
+  }	
 }
-  	writeText(currentEntry);
-  }
-});
+
+//Check if we've submitted the correct code/passkey to win
+function checkCode() {
+	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
+		alert("YOU WIN!");
+		currentEntry = '';
+		tries = 3;
+	} else {
+		tries--;
+		if(tries <= 0) {
+			alert("You Failed!");
+			tries = 3;
+			currentEntry = '';
+			redraw(currentEntry);
+		} else {
+			alert("Try Again. You have " + tries + " tries remaining.");
+			currentEntry = '';
+			redraw(currentEntry);
+		} 
+	}
+}
+
+document.addEventListener('DOMContentLoaded', init);
+document.addEventListener("keydown", handleKeydown);

@@ -3,13 +3,13 @@ body {
 }
 
 .outer {
-	position: relative;
-  	margin: 0 auto;
-	width: 80%;
-	padding-bottom: 35px;
+  position: relative;
+    margin: 0 auto;
+  width: 80%;
+  padding-bottom: 35px;
 }
 canvas {
-  position: absolute;
+  position: abolute;
   height: 100%;
   width: 100%;
 }
@@ -23,13 +23,13 @@ canvas {
 }
 
 /*
-Credit to Chris Coyier for this old school terminal looking trick
+Credit to Chris Coyier for this old school terminal looking trick as published on https://css-tricks.com/
 */
 .terminalBackground {
   background-color: black;
   background-image: radial-gradient(
     rgba(0, 150, 0, 0.75), black 120%
-  );	
+  );  
 }
 .terminalBackground::after {
     content: "";
@@ -49,4 +49,3 @@ Credit to Chris Coyier for this old school terminal looking trick
     pointer-events: none;
   }    
 }
-

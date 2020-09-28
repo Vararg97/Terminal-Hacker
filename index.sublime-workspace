@@ -1,0 +1,449 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hei",
+				"heightB"
+			],
+			[
+				"c",
+				"canvasB"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"pla",
+				"platform"
+			],
+			[
+				"pl",
+				"platform"
+			],
+			[
+				"plat",
+				"platform1"
+			],
+			[
+				"fill",
+				"fillRect"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"end",
+				"endY"
+			],
+			[
+				"ctx",
+				"ctxg"
+			],
+			[
+				"get",
+				"getContext"
+			],
+			[
+				"movin",
+				"movingLeft"
+			],
+			[
+				"move",
+				"moveLeft"
+			],
+			[
+				"mo",
+				"movingLeft"
+			],
+			[
+				"movi",
+				"movingLeft"
+			],
+			[
+				"draw",
+				"drawSquare"
+			],
+			[
+				"S",
+				"squareSize"
+			],
+			[
+				"color",
+				"colorOfSnakeRadio"
+			],
+			[
+				"colorOf",
+				"colorOfSnakeRadio"
+			],
+			[
+				"radio",
+				"radiobtn"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"blo",
+				"blockSize"
+			],
+			[
+				"screen",
+				"screenSize"
+			],
+			[
+				"center",
+				"centerTitle"
+			],
+			[
+				"set",
+				"setTimeout"
+			],
+			[
+				"width",
+				"width"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"an",
+				"animationTime"
+			],
+			[
+				"game",
+				"gameover"
+			],
+			[
+				"gameover",
+				"gameover"
+			],
+			[
+				"ra",
+				"randomRow"
+			],
+			[
+				"rando",
+				"randomCol"
+			],
+			[
+				"new",
+				"newDirection"
+			],
+			[
+				"b",
+				"body"
+			],
+			[
+				"righ",
+				"rightCollision"
+			],
+			[
+				"top",
+				"topCollision"
+			],
+			[
+				"hi",
+				"hightInBlocks"
+			],
+			[
+				"e",
+				"equal"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"d",
+				"drawCircle"
+			],
+			[
+				"s",
+				"sampleCircle"
+			],
+			[
+				"block",
+				"blockSize"
+			],
+			[
+				"prot",
+				"prototype"
+			],
+			[
+				"dr",
+				"drawSquare"
+			],
+			[
+				"snake",
+				"snakeTail"
+			],
+			[
+				"hight",
+				"height"
+			],
+			[
+				"ke",
+				"keyPressed"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"st",
+				"style\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Packa",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"log",
+				"Sublime Merge: Open Repository"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 417.0,
+		"history":
+		[
+			"echo $PATH"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/colemcginnis/dev/FinishedProducts/Snake/Snake.html",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/js/bombCountdown.js",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/js/PuzzleImage.js",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/js/terminal.js",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/data/puzzles.json",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/css/terminal.css",
+		"/Users/colemcginnis/dev/Javascript/Terminal-Hacker/index.html",
+		"/Users/colemcginnis/Library/Application Support/Sublime Text 3/Packages/Browser Sync/browser_sync.py",
+		"/Users/colemcginnis/Library/Application Support/Sublime Text 3/Packages/Browser Sync/browser_sync_launch.js",
+		"/Users/colemcginnis/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/colemcginnis/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/colemcginnis/dev/Javascript/platformer/platform.js",
+		"/Users/colemcginnis/dev/Javascript/Snake/Snake.html",
+		"/Users/colemcginnis/dev/Javascript/platformer/Block.js",
+		"/Users/colemcginnis/dev/Javascript/platformer/Charecter.js",
+		"/Users/colemcginnis/dev/Javascript/platformer/levelSelect.js",
+		"/Users/colemcginnis/dev/Javascript/platformer/index.html",
+		"/Users/colemcginnis/dev/Javascript/platformer/PlatformerPlan.txt",
+		"/Users/colemcginnis/dev/Python/hi.py",
+		"/Users/colemcginnis/dev/Javascript/Tetris/Tetris.html",
+		"/Users/colemcginnis/dev/Javascript/Tetris/TetrisPlan.txt",
+		"/Users/colemcginnis/node_modules/http-server/bin/non-server/SnakeGameDownload.html",
+		"/Users/colemcginnis/dev/Javascript/Snake/untitled.html",
+		"/Users/colemcginnis/dev/Javascript/Snake/untitled1.html",
+		"/Users/colemcginnis/Documents/untitled2.html",
+		"/Users/colemcginnis/Documents/untitled1.html",
+		"/Users/colemcginnis/Documents/untitled.html",
+		"/Users/colemcginnis/dev/hi.py",
+		"/Users/colemcginnis/dev/Unity_Creations/Terminal-Hacker-C#-Edition/Assets/Hacker.cs",
+		"/Users/colemcginnis/memeChat.html",
+		"/Users/colemcginnis/package.json",
+		"/Users/colemcginnis/memeServer.json",
+		"/Users/colemcginnis/dev/Terminal-Hacker/README.md",
+		"/Users/colemcginnis/dev/ScoutLawSearcher",
+		"/Users/colemcginnis/dev/ScoutLawSearcher.html",
+		"/Scout Law Searcher Plan"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 158.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
