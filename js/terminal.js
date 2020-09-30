@@ -8,6 +8,12 @@ let tries = 3;
 //get DPI
 let dpi = window.devicePixelRatio;
 
+function writeTextAtLine(text, lineNumber) {
+    let lineOffset = 20;
+    let lineStart = -5;
+    lineStart = lineStart + (lineOffset * lineNumber);
+    writeText('hi', 0, lineStart, false);
+}
 function init () {
   	canvas = document.getElementById('terminal');
   	ctx = canvas.getContext('2d');
@@ -16,7 +22,8 @@ function init () {
   	textPosY = canvas.height - 3;
   	//Load the first image/challenge
   	redraw();
-  	loadPuzzle();
+    
+    LoadMenue(false);
 }
 
 function loadPuzzle() {
@@ -53,7 +60,7 @@ function redraw(text) {
 }
 
 //Write our keyed in text onto the screen
-function writeText(text = '') {
+function writeText(text = '', x = textPosX, y = textPosY, appendTerminalString = true) {
   	//Clear before redraw
 	ctx.fillStyle = 'white';
 	// text specific styles
@@ -61,13 +68,17 @@ function writeText(text = '') {
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'alphabetic';
 	ctx.shadowColor = "#000"
-	ctx.shadowOffsetX = textPosX + 8;
+	ctx.shadowOffsetX = x + 8;
 	ctx.shadowOffsetY = 0;
 	ctx.shadowBlur = 8;
 	//Set the current values for the next path so we can clear before redraw
 	currentTextWidth = ctx.measureText(terminalStr + text).width;
 	currentTextHeight = parseInt(ctx.font.match(/\d+/), 10);
-	ctx.fillText(terminalStr + text, textPosX, textPosY);
+    let screenTxt = text;
+    if(appendTerminalString) {
+        screenTxt = terminalStr + text;
+    }
+	ctx.fillText(screenTxt, x, y);
 }
 
 function handleKeydown(event) {
@@ -104,7 +115,9 @@ function handleKeydown(event) {
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
 		alert("YOU WIN!");
+        loadPuzzle();
 		currentEntry = '';
+        redraw(currentEntry)
 		tries = 3;
 	} else {
 		tries--;

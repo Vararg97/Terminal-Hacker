@@ -8,7 +8,7 @@ body {
   width: 80%;
   padding-bottom: 35px;
 }
-canvas {
+#terminal {
   position: abolute;
   height: 100%;
   width: 100%;
