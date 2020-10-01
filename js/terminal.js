@@ -23,7 +23,7 @@ function init () {
   	//Load the first image/challenge
   	redraw();
     
-    LoadMenue(false);
+    LoadMenue(false, true);
 }
 
 function loadPuzzle() {
@@ -113,25 +113,31 @@ function handleKeydown(event) {
 
 //Check if we've submitted the correct code/passkey to win
 function checkCode() {
-	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
-		alert("YOU WIN!");
+    if (currentEntry.toUpperCase() === "ADMIN KEY D3V GAME START") {
         loadPuzzle();
-		currentEntry = '';
+        currentEntry = '';
         redraw(currentEntry)
-		tries = 3;
-	} else {
-		tries--;
-		if(tries <= 0) {
-			alert("You Failed!");
-			tries = 3;
-			currentEntry = '';
-			redraw(currentEntry);
-		} else {
-			alert("Try Again. You have " + tries + " tries remaining.");
-			currentEntry = '';
-			redraw(currentEntry);
-		} 
-	}
+        } else {
+        if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
+		  alert("YOU WIN!");
+            loadPuzzle();
+            currentEntry = '';
+            redraw(currentEntry)
+            tries = 3;
+        } else {
+            tries--;
+            if(tries <= 0) {
+                alert("You Failed!");
+                tries = 3;
+                currentEntry = '';
+                redraw(currentEntry);
+            } else {
+                alert("Try Again. You have " + tries + " tries remaining.");
+                currentEntry = '';
+                redraw(currentEntry);
+            } 
+	   }
+    }   
 }
 
 document.addEventListener('DOMContentLoaded', init);
