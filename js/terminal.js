@@ -17,6 +17,7 @@ function init () {
   	//Load the first image/challenge
   	redraw();
   	loadPuzzle();
+    LoadMenue(false, true);
 }
 
 function loadPuzzle() {
