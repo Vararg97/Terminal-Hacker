@@ -1,7 +1,7 @@
 let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-const DIFFICULTY = 20;
+const DIFFICULTY = 50;
 let puzzleImage;
 let tries = 3;
 
