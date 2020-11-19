@@ -1,30 +1,38 @@
 let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-const DIFFICULTY = 50;
 let puzzleImage;
 let tries = 3;
+let gameHasStarted = false;
+let menu;
 
 //get DPI
 let dpi = window.devicePixelRatio;
 
-function init () {
+function init() {
   	canvas = document.getElementById('terminal');
   	ctx = canvas.getContext('2d');
   	fix_dpi();
   	textPosX = 0;
   	textPosY = canvas.height - 3;
   	//Load the first image/challenge
+  	menu = new LoadMenu(false, true);
   	redraw();
-  	loadPuzzle();
-    LoadMenue(false, true);
+  	menu.init();
 }
 
-function loadPuzzle() {
+function start() {
+	gameHasStarted = true;
+	currentEntry = '';
+  	loadPuzzle(menu.selectedDifficulty);
+  	redraw(currentEntry);  	
+}
+
+function loadPuzzle(difficulty) {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
 		let puzzle = json[Math.floor(Math.random() * (json.length))];
 		codeName = puzzle.codeName;
-		puzzleImage = new PuzzleImage(DIFFICULTY, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
+		puzzleImage = new PuzzleImage(difficulty, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
 		puzzleImage.loadImage();
 	});
 }
@@ -45,7 +53,10 @@ function fix_dpi() {
 function redraw(text) {
 	fix_dpi();
   	ctx.save();
-  	ctx.clearRect(0, 0, canvas.width, canvas.height);   
+	ctx.clearRect(0, 0, canvas.width, canvas.height);   
+	if(!gameHasStarted) {
+		menu.drawLevelSelectText();
+	}
   	writeText(text);
   	if(puzzleImage) {
   		puzzleImage.drawPieces();
@@ -53,25 +64,42 @@ function redraw(text) {
 	//ctx.restore();
 }
 
-//Write our keyed in text onto the screen
-function writeText(text = '') {
-  	//Clear before redraw
+function writeTextAtLine(text, lineNumber) {
+    let lineOffset = 20;
+    let lineStart = -5;
+    lineStart = lineStart + (lineOffset * lineNumber);
+    setupFont();
+  	ctx.clearRect(0, lineStart, canvas.width, currentTextHeight);   
+    writeText(text, 0, lineStart, false);
+}
+
+function setupFont() {
 	ctx.fillStyle = 'white';
 	// text specific styles
 	ctx.font = '15pt Inconsolata, monospace';
 	ctx.textAlign = 'left';
 	ctx.textBaseline = 'alphabetic';
 	ctx.shadowColor = "#000"
-	ctx.shadowOffsetX = textPosX + 8;
+	currentTextHeight = parseInt(ctx.font.match(/\d+/), 10);	
+}
+
+//Write our keyed in text onto the screen
+function writeText(text = '', x = textPosX, y = textPosY, appendTerminalString = true) {
+  	//Clear before redraw
+  	setupFont();
+	ctx.shadowOffsetX = x + 8;
 	ctx.shadowOffsetY = 0;
 	ctx.shadowBlur = 8;
 	//Set the current values for the next path so we can clear before redraw
 	currentTextWidth = ctx.measureText(terminalStr + text).width;
-	currentTextHeight = parseInt(ctx.font.match(/\d+/), 10);
-	ctx.fillText(terminalStr + text, textPosX, textPosY);
+    let screenTxt = text;
+    if(appendTerminalString) {
+        screenTxt = terminalStr + text;
+    }
+	ctx.fillText(screenTxt, x, y);
 }
 
-function handleKeydown(event) {
+function handleInput(event) {
   if (event.isComposing || event.keyCode === 229) {
     return;
   }
@@ -85,9 +113,11 @@ function handleKeydown(event) {
   	case 27: 
   		//Escape key pressed
   		break;
-  	case 13:
-  		//Enter key pressed
-  		checkCode();
+  	case 13: 
+  		//Escape key pressed
+  		if(gameHasStarted) {
+  			checkCode();
+  		}
   		break;
 	case 8: 
 		//Delete key pressed
@@ -123,4 +153,4 @@ function checkCode() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
-document.addEventListener("keydown", handleKeydown);
+document.addEventListener("keydown", handleInput);
