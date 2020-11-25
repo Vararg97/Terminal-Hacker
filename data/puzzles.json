@@ -46,7 +46,7 @@
 		"codeName" : "binoculars",
 		"image" : "binoculars.jpg",
         "synonyms" : [
-            "feild glasses",
+            "field glasses",
             "lorgnette",
             "pince-nez",
             "prism binoculars"
@@ -105,7 +105,8 @@
             "cookie",
             "biscuit",
             "wafer",
-            "confection"
+            "chocolate chip cookie",
+            "chocolate chip cookies"
         ]
 	}
 ]
