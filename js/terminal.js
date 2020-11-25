@@ -32,6 +32,7 @@ function loadMenu() {
 function restart() {
 	tries = maxAttempts;	
 	gameHasStarted = false;
+	gameOver = false;
 	currentEntry = '';
 	puzzleImage = null;
 	bomb = null;
