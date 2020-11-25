@@ -169,8 +169,6 @@ function checkCode() {
 	} else {
 		tries--;
 		if(tries <= 0) {
-			//TODO: Remove the alert
-			alert("You Failed!");
 			bomb.drawExplosion();
 			tries = 0;
 			gameOver = true;

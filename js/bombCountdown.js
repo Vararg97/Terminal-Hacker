@@ -75,7 +75,7 @@ class Bomb {
 		this.explosionInterval = setInterval(function() {
 			if(this.explosionCycle > 5) {
 				clearInterval(this.explosionInterval);
-				//Todo: Draw you Loose!  Press escape to start over.
+                this.restartWords();
 			} else {
 				this.explosionCycle++;
 				this.renderExplosion(50*this.explosionCycle);
@@ -83,6 +83,13 @@ class Bomb {
 		}.bind(this), 500);
 	}
 
+    restartWords = function() {
+        this.ctx.fillStyle = "gold";
+        this.ctx.font = "60px Roboto";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText("You Loose!  Press the escape key to start over.",this.width/2,this.height/2);
+    }
+    
 	renderExplosion = function(x) {
 		let outer = x;
 		let inner = outer * .4;
