@@ -75,8 +75,7 @@ class Bomb {
 		this.explosionInterval = setInterval(function() {
 			if(this.explosionCycle > 5) {
 				clearInterval(this.explosionInterval);
-				//Todo: Draw you Loose!  Press escppe to start over.
-				//Remove keydown for all other keys.
+				//Todo: Draw you Loose!  Press escape to start over.
 			} else {
 				this.explosionCycle++;
 				this.renderExplosion(50*this.explosionCycle);

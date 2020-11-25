@@ -5,6 +5,7 @@ let puzzleImage;
 let maxAttempts = 3;
 let tries = maxAttempts;
 let gameHasStarted = false;
+let gameOver = false;
 let menu;
 let bomb;
 
@@ -123,12 +124,6 @@ function handleInput(event) {
   if (event.isComposing || event.keyCode === 229) {
     return;
   }
-  var inp = String.fromCharCode(event.keyCode);
-  //key code is alphanumeric or hypen or underscore
-  if (/[a-zA-Z0-9-_ ]/.test(inp)) {
-  	currentEntry+= inp;
-  	redraw(currentEntry);
-  }
   switch (event.keyCode) {
   	case 27: 
   		//Escape key pressed
@@ -136,32 +131,48 @@ function handleInput(event) {
   		break;
   	case 13: 
   		//Escape key pressed
-  		if(gameHasStarted) {
+  		if(gameHasStarted && !gameOver) {
   			checkCode();
   		}
   		break;
 	case 8: 
 		//Delete key pressed
-	  	if(currentEntry.lenth <= 0) {
-	  		currentEntry = '';
-  		} else {
-  			currentEntry = currentEntry.slice(0, -1);
+		if(!gameOver) {
+		  	if(currentEntry.lenth <= 0) {
+		  		currentEntry = '';
+	  		} else {
+	  			currentEntry = currentEntry.slice(0, -1);
+	  		}
+	  		redraw(currentEntry);
   		}
-  		redraw(currentEntry);
 		break;
+	default: 
+  		if(!gameOver) {
+		  var inp = String.fromCharCode(event.keyCode);
+		  //key code is alphanumeric or hypen or underscore
+		  if (/[a-zA-Z0-9-_ ]/.test(inp)) {
+		  	currentEntry+= inp;
+		  	redraw(currentEntry);
+		  }
+		}
+	  break;
   }	
 }
 
 //Check if we've submitted the correct code/passkey to win
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
+		//TODO: Remove alert and draw "YOU WIN!", followed by the unscrambled image.
 		alert("YOU WIN!");
+		gameOver = true;
 	} else {
 		tries--;
 		if(tries <= 0) {
+			//TODO: Remove the alert
 			alert("You Failed!");
 			bomb.drawExplosion();
 			tries = 0;
+			gameOver = true;
 		} else {
 			currentEntry = '';
 			redraw(currentEntry);
