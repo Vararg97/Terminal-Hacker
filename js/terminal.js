@@ -162,6 +162,7 @@ function handleInput(event) {
 
 function youWin() {
     puzzleImage.drawFullImage();
+	bomb.clearBomb();
     ctx.fillStyle = "gold";
     ctx.font = "60px Roboto";
     ctx.textAlign = "center";
