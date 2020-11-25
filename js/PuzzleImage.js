@@ -42,6 +42,8 @@ class PuzzleImage {
             piece.xPos = xPos;
             piece.yPos = yPos;
             this.ctx.drawImage(this.image, piece.sx, piece.sy, this.pieceWidth, this.pieceHeight, xPos, yPos, this.pieceWidth, this.pieceHeight);
+            this.ctx.lineWidth = 2;
+            this.ctx.strokeStyle = 'black';
             this.ctx.strokeRect(xPos, yPos, this.pieceWidth,this.pieceHeight);
             xPos += this.pieceWidth;
             if(xPos >= this.imageWidth){

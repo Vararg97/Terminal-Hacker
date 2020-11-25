@@ -2,9 +2,12 @@ let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeNa
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
 let puzzleImage;
-let tries = 3;
+let maxAttempts = 3;
+let tries = maxAttempts;
 let gameHasStarted = false;
 let menu;
+let bomb;
+
 
 //get DPI
 let dpi = window.devicePixelRatio;
@@ -12,33 +15,47 @@ let dpi = window.devicePixelRatio;
 function init() {
   	canvas = document.getElementById('terminal');
   	ctx = canvas.getContext('2d');
-  	fix_dpi();
+  	fix_dpi(canvas);
   	textPosX = 0;
   	textPosY = canvas.height - 3;
+  	loadMenu();
+}
+
+function loadMenu() {
   	//Load the first image/challenge
   	menu = new LoadMenu(false, true);
   	redraw();
-  	menu.init();
+  	menu.init();	
+}
+
+function restart() {
+	tries = maxAttempts;	
+	gameHasStarted = false;
+	currentEntry = '';
+	puzzleImage = null;
+	bomb = null;
+	loadMenu();
 }
 
 function start() {
 	gameHasStarted = true;
 	currentEntry = '';
-  	loadPuzzle(menu.selectedDifficulty);
-  	redraw(currentEntry);  	
+  	bomb = new Bomb(ctx, canvas.height, canvas.width, currentTextHeight);
+  	loadPuzzle(menu.selectedDifficulty, (bomb.startY - bomb.radius));
+  	redraw(currentEntry);
 }
 
-function loadPuzzle(difficulty) {
+function loadPuzzle(difficulty, height) {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
 		let puzzle = json[Math.floor(Math.random() * (json.length))];
 		codeName = puzzle.codeName;
-		puzzleImage = new PuzzleImage(difficulty, canvas.width, canvas.height - (currentTextHeight + 5), "images/" + puzzle.image, ctx);
+		puzzleImage = new PuzzleImage(difficulty, canvas.width, height, "images/" + puzzle.image, ctx);
 		puzzleImage.loadImage();
 	});
 }
 
 //Thanks to https://medium.com/wdstack/fixing-html5-2d-canvas-blur-8ebe27db07da for solution
-function fix_dpi() {
+function fix_dpi(canvas) {
 	//get CSS height
 	//the + prefix casts it to an integer
 	//the slice method gets rid of "px"
@@ -51,7 +68,7 @@ function fix_dpi() {
 }
 
 function redraw(text) {
-	fix_dpi();
+	fix_dpi(canvas);
   	ctx.save();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);   
 	if(!gameHasStarted) {
@@ -60,6 +77,9 @@ function redraw(text) {
   	writeText(text);
   	if(puzzleImage) {
   		puzzleImage.drawPieces();
+  	}
+  	if(bomb) {
+  		bomb.render(tries/maxAttempts);
   	}
 	//ctx.restore();
 }
@@ -112,6 +132,7 @@ function handleInput(event) {
   switch (event.keyCode) {
   	case 27: 
   		//Escape key pressed
+  		restart();
   		break;
   	case 13: 
   		//Escape key pressed
@@ -135,17 +156,11 @@ function handleInput(event) {
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
 		alert("YOU WIN!");
-		currentEntry = '';
-		tries = 3;
 	} else {
 		tries--;
 		if(tries <= 0) {
 			alert("You Failed!");
-			tries = 3;
-			currentEntry = '';
-			redraw(currentEntry);
 		} else {
-			alert("Try Again. You have " + tries + " tries remaining.");
 			currentEntry = '';
 			redraw(currentEntry);
 		} 
