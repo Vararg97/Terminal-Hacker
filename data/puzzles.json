@@ -18,5 +18,25 @@
 	{
 		"codeName" : "scissors",
 		"image" : "scissors.jpg"			
+	},
+	{
+		"codeName" : "baguettes",
+		"image" : "baguettes.jpg"			
+	},
+	{
+		"codeName" : "rose",
+		"image" : "rose.jpg"			
+	},
+	{
+		"codeName" : "candle",
+		"image" : "candle.jpg"			
+	},
+	{
+		"codeName" : "candy canes",
+		"image" : "candycanes.jpg"			
+	},
+	{
+		"codeName" : "cookies",
+		"image" : "cookies.jpg"			
 	}
 ]
