@@ -14,6 +14,11 @@ class PuzzleImage {
         this.pieceHeight = Math.floor(this.imageHeight / this.difficulty);
     }
 
+    drawFullImage = function() {
+        this.ctx.clearRect(0,0,this.imageWidth,this.imageHeight);
+        this.ctx.drawImage(this.image,0,0,this.imageWidth,this.imageHeight);
+    }
+    
     //Create total image slices based upon difficulty
     scrambleImage = function() {
         let i, piece;
@@ -34,7 +39,7 @@ class PuzzleImage {
 
     //Draw the image pieces on the stage
     drawPieces = function(){
-        ctx.clearRect(0,0,this.imageWidth,this.imageHeight);
+        this.ctx.clearRect(0,0,this.imageWidth,this.imageHeight);
         let i, piece;	
         let xPos = 0, yPos = 0;
         for(i = 0;i < this.pieces.length;i++){

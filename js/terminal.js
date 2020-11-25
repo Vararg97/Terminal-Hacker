@@ -161,6 +161,7 @@ function handleInput(event) {
 }
 
 function youWin() {
+    puzzleImage.drawFullImage();
     ctx.fillStyle = "gold";
     ctx.font = "60px Roboto";
     ctx.textAlign = "center";
@@ -170,8 +171,6 @@ function youWin() {
 //Check if we've submitted the correct code/passkey to win
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
-		//TODO: Remove alert and draw "YOU WIN!", followed by the unscrambled image.
-		alert("YOU WIN!");
 		gameOver = true;
         youWin();
 	} else {

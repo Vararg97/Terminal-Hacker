@@ -5,8 +5,6 @@ Hi! U eat michrochips.
 This is a game where you have to "hack" into the terminal by guessing the correct code word for the scrambled image that is presented.  
 
 ### TODO
-* Remove alert boxes on end game state and convert to text rendering.
-* Add game winner functionality to draw the unscrambled image and a YOU WIN! text.
 * Add more images/codes
 
 ### Feature Requests
