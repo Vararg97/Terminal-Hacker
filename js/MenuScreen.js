@@ -11,10 +11,12 @@ class LoadMenu {
 		];
 		this.selectedDifficulty =  0;
 		this.loadFailDiffSelect = false;
+		this.onKeydown = null;
 	}
 	    
     init() {
-		document.addEventListener('keydown', this.setDifficulty.bind(this));
+    	this.onKeydown = this.setDifficulty.bind(this);
+		document.addEventListener('keydown', this.onKeydown);
 		this.drawLevelSelectText();
     }
 
@@ -56,8 +58,7 @@ class LoadMenu {
 					return name === this.input
 					});
 				if(level) {
-					//TODO: This is not working, need to fix.
-					document.removeEventListener('keydown', this.setDifficulty);
+					document.removeEventListener('keydown', this.onKeydown);
 					this.startGame(level.value);
 				} else {
 					this.loadFailDiffSelect = true;
