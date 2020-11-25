@@ -160,12 +160,20 @@ function handleInput(event) {
   }	
 }
 
+function youWin() {
+    ctx.fillStyle = "gold";
+    ctx.font = "60px Roboto";
+    ctx.textAlign = "center";
+    ctx.fillText("You Win!  Press the escape key to start over.",canvas.width/2,canvas.height/2);
+}
+
 //Check if we've submitted the correct code/passkey to win
 function checkCode() {
 	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
 		//TODO: Remove alert and draw "YOU WIN!", followed by the unscrambled image.
 		alert("YOU WIN!");
 		gameOver = true;
+        youWin();
 	} else {
 		tries--;
 		if(tries <= 0) {
