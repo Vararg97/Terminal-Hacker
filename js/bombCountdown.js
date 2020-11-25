@@ -91,7 +91,7 @@ class Bomb {
         this.ctx.fillStyle = "gold";
         this.ctx.font = "60px Roboto";
         this.ctx.textAlign = "center";
-        this.ctx.fillText("You Loose!  Press the escape key to start over.",this.width/2,this.height/2);
+        this.ctx.fillText("You Lose!  Press the escape key to start over.",this.width/2,this.height/2);
     }
     
 	renderExplosion = function(x) {
