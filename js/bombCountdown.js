@@ -71,7 +71,7 @@ class Bomb {
 	}
 
 	drawExplosion = function() {
-		ctx.clearRect(this.startX - this.radius, this.startY - this.radius, this.width,  this.startY + this.radius);		
+		this.clearBomb();		
 		this.explosionInterval = setInterval(function() {
 			if(this.explosionCycle > 5) {
 				clearInterval(this.explosionInterval);
@@ -81,6 +81,10 @@ class Bomb {
 				this.renderExplosion(50*this.explosionCycle);
 			}
 		}.bind(this), 500);
+	}
+
+	clearBomb = function() {
+		this.ctx.clearRect(this.startX - this.radius, this.startY - (this.radius +5), this.width,  this.startY + (this.radius +5));		
 	}
 
     restartWords = function() {
