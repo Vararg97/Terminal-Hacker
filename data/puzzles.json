@@ -1,42 +1,92 @@
 [
 	{
 		"codeName" : "guitar",
-		"image" : "guitar.jpg"	
+		"image" : "guitar.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "chicken",
-		"image" : "chicken.jpg"			
+		"image" : "chicken.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]		
 	},
 	{
 		"codeName" : "fishing rod",
-		"image" : "Fishing-Rod.jpg"			
+		"image" : "Fishing-Rod.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]		
 	},
 	{
 		"codeName" : "binoculars",
-		"image" : "binoculars.jpg"			
+		"image" : "binoculars.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "scissors",
-		"image" : "scissors.jpg"			
+		"image" : "scissors.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "baguettes",
-		"image" : "baguettes.jpg"			
+		"image" : "baguettes.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "rose",
-		"image" : "rose.jpg"			
+		"image" : "rose.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "candle",
-		"image" : "candle.jpg"			
+		"image" : "candle.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "candy canes",
-		"image" : "candycanes.jpg"			
+		"image" : "candycanes.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	},
 	{
 		"codeName" : "cookies",
-		"image" : "cookies.jpg"			
+		"image" : "cookies.jpg",
+        "synonyms" : [
+            "ice cream",
+            "donuts",
+            "i"
+        ]
 	}
 ]

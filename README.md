@@ -5,6 +5,7 @@ Hi! U eat michrochips.
 This is a game where you have to "hack" into the terminal by guessing the correct code word for the scrambled image that is presented.  
 
 ### TODO
+* Add valid synonyms
 * Add more images/codes
 
 ### Feature Requests

@@ -8,10 +8,21 @@ let gameHasStarted = false;
 let gameOver = false;
 let menu;
 let bomb;
+let codeSynonyms;
 
 
 //get DPI
 let dpi = window.devicePixelRatio;
+
+function checkSynonyms(code) {
+    let numberOfSynonyms = codeSynonyms.length;
+    for (let i = 0; i <= numberOfSynonyms; i++) {
+        if (codeSynonyms[i].toUpperCase() == code.toUpperCase()) {
+            return true;
+        }
+    }
+    return false;
+}
 
 function init() {
   	canvas = document.getElementById('terminal');
@@ -51,6 +62,7 @@ function loadPuzzle(difficulty, height) {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
 		let puzzle = json[Math.floor(Math.random() * (json.length))];
 		codeName = puzzle.codeName;
+        codeSynonyms = puzzle.synonyms;
 		puzzleImage = new PuzzleImage(difficulty, canvas.width, height, "images/" + puzzle.image, ctx);
 		puzzleImage.loadImage();
 	});
@@ -161,8 +173,8 @@ function handleInput(event) {
 }
 
 function youWin() {
-    puzzleImage.drawFullImage();
 	bomb.clearBomb();
+    puzzleImage.drawFullImage();
     ctx.fillStyle = "gold";
     ctx.font = "60px Roboto";
     ctx.textAlign = "center";
@@ -171,7 +183,7 @@ function youWin() {
 
 //Check if we've submitted the correct code/passkey to win
 function checkCode() {
-	if(currentEntry.toUpperCase() === codeName.toUpperCase()) {
+	if(currentEntry.toUpperCase() === codeName.toUpperCase() || checkSynonyms(currentEntry)) {
 		gameOver = true;
         youWin();
 	} else {
