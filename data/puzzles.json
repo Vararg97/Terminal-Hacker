@@ -3,90 +3,109 @@
 		"codeName" : "guitar",
 		"image" : "guitar.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            
         ]
 	},
 	{
 		"codeName" : "chicken",
 		"image" : "chicken.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "hen",
+            "poultry",
+            "biddy",
+            "rooster",
+            "cockerel",
+            "chick",
+            "capon",
+            "cock",
+            "pullet"
         ]		
 	},
 	{
 		"codeName" : "fishing rod",
 		"image" : "Fishing-Rod.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "boat rod",
+            "bait-casting rod",
+            "casting rod",
+            "fiberglass rod",
+            "fish pole",
+            "fly rod",
+            "jigging rod",
+            "muskie rod",
+            "popping rod",
+            "spinning rod",
+            "rod",
+            "surf rod",
+            "fishing pole",
+            "fishers rod",
+            "fishers pole"
         ]		
 	},
 	{
 		"codeName" : "binoculars",
 		"image" : "binoculars.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "feild glasses",
+            "lorgnette",
+            "pince-nez",
+            "prism binoculars"
         ]
 	},
 	{
 		"codeName" : "scissors",
 		"image" : "scissors.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "clippers",
+            "shears",
+            "trimmer",
+            "trimmers",
+            "shear",
+            "clipper",
+            "scissor"
         ]
 	},
 	{
 		"codeName" : "baguettes",
 		"image" : "baguettes.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "baguette",
+            "bread"
         ]
 	},
 	{
 		"codeName" : "rose",
 		"image" : "rose.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "flower"
         ]
 	},
 	{
 		"codeName" : "candle",
 		"image" : "candle.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "torch",
+            "dip",
+            "flambeau",
+            "rushlight",
+            "bougie"
         ]
 	},
 	{
 		"codeName" : "candy canes",
 		"image" : "candycanes.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "candy cane"
         ]
 	},
 	{
 		"codeName" : "cookies",
 		"image" : "cookies.jpg",
         "synonyms" : [
-            "ice cream",
-            "donuts",
-            "i"
+            "cookie",
+            "biscuit",
+            "wafer",
+            "confection"
         ]
 	}
 ]
