@@ -56,11 +56,14 @@ class LoadMenu {
 					return name === this.input
 					});
 				if(level) {
+					//TODO: This is not working, need to fix.
 					document.removeEventListener('keydown', this.setDifficulty);
 					this.startGame(level.value);
 				} else {
 					this.loadFailDiffSelect = true;
-					redraw();			
+					this.input = '';
+					currentEntry = '';
+					redraw(currentEntry);			
 				}
 				break;
 		}		 					

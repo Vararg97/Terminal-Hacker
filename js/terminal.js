@@ -160,6 +160,8 @@ function checkCode() {
 		tries--;
 		if(tries <= 0) {
 			alert("You Failed!");
+			bomb.drawExplosion();
+			tries = 0;
 		} else {
 			currentEntry = '';
 			redraw(currentEntry);
