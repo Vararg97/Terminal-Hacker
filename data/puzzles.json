@@ -22,17 +22,16 @@
 		"image" : "Fishing-Rod.jpg",
         "synonyms" : [
             "boat rod",
-            "bait-casting rod",
+            "boat pole",
+            "bait casting rod",
+            "bait casting pole",
             "casting rod",
-            "fiberglass rod",
+            "casting pole",
             "fish pole",
+            "fish rod",
+            "fly pole"
             "fly rod",
-            "jigging rod",
-            "muskie rod",
-            "popping rod",
-            "spinning rod",
             "rod",
-            "surf rod",
             "fishing pole",
             "fishers rod",
             "fishers pole"
@@ -42,10 +41,9 @@
 		"codeName" : "binoculars",
 		"image" : "binoculars.jpg",
         "synonyms" : [
-            "field glasses",
-            "lorgnette",
-            "pince-nez",
-            "prism binoculars"
+            "prism binoculars",
+            "binocular",
+            "prism binocular"
         ]
 	},
 	{
@@ -66,14 +64,22 @@
 		"image" : "baguettes.jpg",
         "synonyms" : [
             "baguette",
-            "bread"
+            "bread",
+            "italian bread",
+            "italian baguette"
         ]
 	},
 	{
 		"codeName" : "rose",
 		"image" : "rose.jpg",
         "synonyms" : [
-            "flower"
+            "flower",
+            "red flower",
+            "red rose",
+            "flowers",
+            "red flowers",
+            "red roses",
+            "roses"
         ]
 	},
 	{
@@ -81,10 +87,8 @@
 		"image" : "candle.jpg",
         "synonyms" : [
             "torch",
-            "dip",
-            "flambeau",
-            "rushlight",
-            "bougie"
+            "fire",
+            "light"
         ]
 	},
 	{
@@ -102,7 +106,9 @@
             "biscuit",
             "wafer",
             "chocolate chip cookies",
-            "chocolate chip cookie"
+            "chocolate chip cookie",
+            "chocolate cookie",
+            "chocolate cookies"
         ]
 	}
 ]
