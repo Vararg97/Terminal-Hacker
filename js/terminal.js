@@ -16,7 +16,7 @@ let dpi = window.devicePixelRatio;
 
 function checkSynonyms(code) {
     let numberOfSynonyms = codeSynonyms.length;
-    for (let i = 0; i <= numberOfSynonyms; i++) {
+    for (let i = 0; i < numberOfSynonyms; i++) {
         if (codeSynonyms[i].toUpperCase() == code.toUpperCase()) {
             return true;
         }
