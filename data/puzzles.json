@@ -15,7 +15,7 @@
             "rooster",
             "cockerel",
             "chick"
-        ]		
+        ]	
 	},
 	{
 		"codeName" : "fishing rod",
@@ -29,13 +29,13 @@
             "casting pole",
             "fish pole",
             "fish rod",
-            "fly pole"
+            "fly pole",
             "fly rod",
             "rod",
             "fishing pole",
             "fishers rod",
             "fishers pole"
-        ]		
+        ]
 	},
 	{
 		"codeName" : "binoculars",
