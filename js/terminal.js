@@ -1,7 +1,6 @@
 let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-let puzzleImage;
 let maxAttempts = 3;
 let tries = maxAttempts;
 let gameHasStarted = false;
@@ -9,7 +8,8 @@ let gameOver = false;
 let menu;
 let bomb;
 let codeSynonyms;
-
+let puzzleImage;
+let stopped = false;
 
 //get DPI
 let dpi = window.devicePixelRatio;
@@ -22,6 +22,10 @@ function checkSynonyms(code) {
         }
     }
     return false;
+}
+
+function loadGameTwo() {
+    
 }
 
 function init() {
@@ -50,11 +54,22 @@ function restart() {
 	loadMenu();
 }
 
+function stop() {
+	tries = maxAttempts;	
+	gameHasStarted = false;
+	gameOver = false;
+	currentEntry = '';
+	puzzleImage = null;
+	bomb = null;
+    stopped = true;
+    redraw("Stopped VIA hotkey.");
+}
+
 function start() {
 	gameHasStarted = true;
 	currentEntry = '';
   	bomb = new Bomb(ctx, canvas.height, canvas.width, currentTextHeight);
-  	loadPuzzle(menu.selectedDifficulty, (bomb.startY - bomb.radius));
+    loadPuzzle(menu.selectedDifficulty, (bomb.startY - bomb.radius));
   	redraw(currentEntry);
 }
 
@@ -85,7 +100,7 @@ function redraw(text) {
 	fix_dpi(canvas);
   	ctx.save();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);   
-	if(!gameHasStarted) {
+	if(!gameHasStarted && !stopped) {
 		menu.drawLevelSelectText();
 	}
   	writeText(text);
@@ -143,7 +158,7 @@ function handleInput(event) {
   		restart();
   		break;
   	case 13: 
-  		//Escape key pressed
+  		//Enter key pressed
   		if(gameHasStarted && !gameOver) {
   			checkCode();
   		}
@@ -159,6 +174,11 @@ function handleInput(event) {
 	  		redraw(currentEntry);
   		}
 		break;
+      case 187:
+          //Equals symbol key pressed
+          stop();
+          loadGameTwo();
+          break;
 	default: 
   		if(!gameOver) {
 		  var inp = String.fromCharCode(event.keyCode);
