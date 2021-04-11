@@ -35,17 +35,19 @@ class GameEngine {
 				redraw(currentEntry);
 				break;
 			case gameStates.STAGE2:
+				//TEMP TO SUPPORT SHORTCUT
 				this.clearState();
+				this.gameState = gameStates.STAGE1;
+				loadTrivia();
 				redraw(currentEntry);
 				break;
 		}
 	}
 
 	clearState = function() {
-		currentEntry = '';
 		this.tries = this.maxAttempts;
 		this.setGameState(gameStates.INIT);
-		puzzleImage = null;
+		cleanGlobals();
 		this.bomb = null;
 	}
 

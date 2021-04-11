@@ -1,10 +1,10 @@
-let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
+let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
 let menu;
 let bomb;
-let codeSynonyms;
 let puzzleImage;
+let trivia;
 let gameEngine;
 
 const gameStates = {
@@ -36,12 +36,25 @@ function loadMenu() {
   	menu.init();
 }
 
+function cleanGlobals() {
+	puzzleImage = null;
+	trivia = null;
+	currentEntry = '';
+}		
 
 function loadPuzzle(difficulty, height) {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
 		let puzzle = json[Math.floor(Math.random() * (json.length))];
 		puzzleImage = new PuzzleImage(difficulty, canvas.width, height, "images/" + puzzle.image, ctx, puzzle.codeName, puzzle.synonyms);
 		puzzleImage.loadImage();
+	});
+}
+
+function loadTrivia() {
+	fetch("data/questions.json").then(response => response.json()).then(json => {
+		let question = json[Math.floor(Math.random() * (json.length))];
+		trivia = new Trivia(question);
+		trivia.init();
 	});
 }
 
@@ -62,7 +75,7 @@ function redraw(text) {
 	fix_dpi(canvas);
   	ctx.save();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);   
-	if(gameEngine.getGameState() != gameStates.GAMEOVER) {
+	if([gameStates.INIT, gameStates.STARTED].indexOf(gameEngine.getGameState()) > -1) {
 		menu.drawLevelSelectText();
 	}
   	writeText(text);
