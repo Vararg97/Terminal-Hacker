@@ -1,7 +1,7 @@
 //Core of this functionality is thanks to the tutorial at
 // https://code.tutsplus.com/tutorials/create-an-html5-canvas-tile-swapping-puzzle--active-10747
 class PuzzleImage {
-    constructor(difficulty, imageWidth, imageHeight, imageFile, ctx) {
+    constructor(difficulty, imageWidth, imageHeight, imageFile, ctx, codeName, codeSynonyms) {
         this.ctx = ctx;
         this.pieces = [];
         this.difficulty = difficulty;
@@ -12,6 +12,8 @@ class PuzzleImage {
         this.image = new Image(this.imageWidth, this.imageHeight);
         this.pieceWidth = Math.floor(this.imageWidth / this.difficulty);
         this.pieceHeight = Math.floor(this.imageHeight / this.difficulty);
+        this.codeName = codeName;
+        this.codeSynonyms = codeSynonyms;
     }
 
     drawFullImage = function() {
@@ -102,7 +104,27 @@ class PuzzleImage {
         
         // return the new canvas with the resized image
         return(imgC);
-    }    
+    }
+
+    //Check if we've submitted the correct code/passkey to win
+    isCorrect = function(entry) {
+        if(entry.toUpperCase() === this.codeName.toUpperCase() || this.checkSynonyms(entry)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    checkSynonyms = function(code) {
+        let numberOfSynonyms = this.codeSynonyms.length;
+        for (let i = 0; i < numberOfSynonyms; i++) {
+            if (this.codeSynonyms[i].toUpperCase() == code.toUpperCase()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 

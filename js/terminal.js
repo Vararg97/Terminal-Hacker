@@ -1,32 +1,22 @@
 let canvas, ctx, textPosX, textPosY, currentTextWidth, currentTextHeight, codeName;
 let terminalStr = '(Passkey) ~$ '
 let currentEntry = '';
-let maxAttempts = 3;
-let tries = maxAttempts;
-let gameHasStarted = false;
-let gameOver = false;
 let menu;
 let bomb;
 let codeSynonyms;
 let puzzleImage;
-let stopped = false;
+let gameEngine;
+
+const gameStates = {
+	INIT:"init",
+	STARTED:"started",
+	GAMEOVER:"gameover",
+	STAGE1:"stage1",
+	STAGE2:"stage2"
+}
 
 //get DPI
 let dpi = window.devicePixelRatio;
-
-function checkSynonyms(code) {
-    let numberOfSynonyms = codeSynonyms.length;
-    for (let i = 0; i < numberOfSynonyms; i++) {
-        if (codeSynonyms[i].toUpperCase() == code.toUpperCase()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function loadGameTwo() {
-    
-}
 
 function init() {
   	canvas = document.getElementById('terminal');
@@ -34,51 +24,23 @@ function init() {
   	fix_dpi(canvas);
   	textPosX = 0;
   	textPosY = canvas.height - 3;
+  	gameEngine = new GameEngine();
+  	gameEngine.init();
   	loadMenu();
 }
 
 function loadMenu() {
   	//Load the first image/challenge
-  	menu = new LoadMenu(false, true);
+  	menu = new LoadMenu(false, true, gameEngine);
   	redraw();
-  	menu.init();	
+  	menu.init();
 }
 
-function restart() {
-	tries = maxAttempts;	
-	gameHasStarted = false;
-	gameOver = false;
-	currentEntry = '';
-	puzzleImage = null;
-	bomb = null;
-	loadMenu();
-}
-
-function stop() {
-	tries = maxAttempts;	
-	gameHasStarted = false;
-	gameOver = false;
-	currentEntry = '';
-	puzzleImage = null;
-	bomb = null;
-    stopped = true;
-    redraw("Stopped VIA hotkey.");
-}
-
-function start() {
-	gameHasStarted = true;
-	currentEntry = '';
-  	bomb = new Bomb(ctx, canvas.height, canvas.width, currentTextHeight);
-    loadPuzzle(menu.selectedDifficulty, (bomb.startY - bomb.radius));
-  	redraw(currentEntry);
-}
 
 function loadPuzzle(difficulty, height) {
 	fetch("data/puzzles.json").then(response => response.json()).then(json => {
 		let puzzle = json[Math.floor(Math.random() * (json.length))];
-		codeName = puzzle.codeName;
-        codeSynonyms = puzzle.synonyms;
-		puzzleImage = new PuzzleImage(difficulty, canvas.width, height, "images/" + puzzle.image, ctx);
+		puzzleImage = new PuzzleImage(difficulty, canvas.width, height, "images/" + puzzle.image, ctx, puzzle.codeName, puzzle.synonyms);
 		puzzleImage.loadImage();
 	});
 }
@@ -100,7 +62,7 @@ function redraw(text) {
 	fix_dpi(canvas);
   	ctx.save();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);   
-	if(!gameHasStarted && !stopped) {
+	if(gameEngine.getGameState() != gameStates.GAMEOVER) {
 		menu.drawLevelSelectText();
 	}
   	writeText(text);
@@ -148,84 +110,5 @@ function writeText(text = '', x = textPosX, y = textPosY, appendTerminalString =
 	ctx.fillText(screenTxt, x, y);
 }
 
-function handleInput(event) {
-  if (event.isComposing || event.keyCode === 229) {
-    return;
-  }
-  switch (event.keyCode) {
-  	case 27: 
-  		//Escape key pressed
-  		restart();
-        if (stopped) {
-            stopped = false;
-        }
-  		break;
-  	case 13: 
-  		//Enter key pressed
-  		if(gameHasStarted && !gameOver) {
-  			checkCode();
-  		}
-  		break;
-	case 8: 
-		//Delete key pressed
-		if(!gameOver) {
-		  	if(currentEntry.lenth <= 0) {
-		  		currentEntry = '';
-	  		} else {
-	  			currentEntry = currentEntry.slice(0, -1);
-	  		}
-	  		redraw(currentEntry);
-  		}
-		break;
-      case 187:
-          //Equals symbol key pressed
-          stop();
-          loadGameTwo();
-          break;
-       case 61:
-          //Equals symbol key pressed
-          stop();
-          loadGameTwo();
-          break;
-	default: 
-  		if(!gameOver) {
-		  var inp = String.fromCharCode(event.keyCode);
-		  //key code is alphanumeric or hypen or underscore
-		  if (/[a-zA-Z0-9-_ ]/.test(inp)) {
-		  	currentEntry+= inp;
-		  	redraw(currentEntry);
-		  }
-		}
-	  break;
-  }	
-}
-
-function youWin() {
-	bomb.clearBomb();
-    puzzleImage.drawFullImage();
-    ctx.fillStyle = "gold";
-    ctx.font = "60px Roboto";
-    ctx.textAlign = "center";
-    ctx.fillText("You Win!  Press the escape key to start over.",canvas.width/2,canvas.height/2);
-}
-
-//Check if we've submitted the correct code/passkey to win
-function checkCode() {
-	if(currentEntry.toUpperCase() === codeName.toUpperCase() || checkSynonyms(currentEntry)) {
-		gameOver = true;
-        youWin();
-	} else {
-		tries--;
-		if(tries <= 0) {
-			bomb.drawExplosion();
-			tries = 0;
-			gameOver = true;
-		} else {
-			currentEntry = '';
-			redraw(currentEntry);
-		} 
-	}
-}
 
 document.addEventListener('DOMContentLoaded', init);
-document.addEventListener("keydown", handleInput);

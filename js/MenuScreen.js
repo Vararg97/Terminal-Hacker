@@ -1,6 +1,6 @@
 class LoadMenu {
     
-    constructor(picturePuzzleLocked, newperson) {
+    constructor(picturePuzzleLocked, newperson, gameEngine) {
         this.picturePuzzleLocked = picturePuzzleLocked;
         this.newperson = newperson;        
         this.input = '';
@@ -12,6 +12,7 @@ class LoadMenu {
 		this.selectedDifficulty =  0;
 		this.loadFailDiffSelect = false;
 		this.onKeydown = null;
+		this.gameEngine = gameEngine;
 	}
 	    
     init() {
@@ -22,7 +23,7 @@ class LoadMenu {
 
 	startGame(level) {
 		this.selectedDifficulty = level;
-		start();
+		this.gameEngine.start();
 	}
 
 	drawLevelSelectText() {
@@ -46,7 +47,7 @@ class LoadMenu {
 		switch (event.keyCode) {
 			case 8: 
 				//Delete key pressed
-			  	if(this.input.lenth <= 0) {
+			  	if(this.input.length <= 0) {
 			  		this.input = '';
 		  		} else {
 		  			this.input = this.input.slice(0, -1);
