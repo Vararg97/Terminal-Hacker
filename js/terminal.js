@@ -156,6 +156,9 @@ function handleInput(event) {
   	case 27: 
   		//Escape key pressed
   		restart();
+        if (stopped) {
+            stopped = false;
+        }
   		break;
   	case 13: 
   		//Enter key pressed
