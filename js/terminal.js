@@ -182,6 +182,11 @@ function handleInput(event) {
           stop();
           loadGameTwo();
           break;
+       case 61:
+          //Equals symbol key pressed
+          stop();
+          loadGameTwo();
+          break;
 	default: 
   		if(!gameOver) {
 		  var inp = String.fromCharCode(event.keyCode);
