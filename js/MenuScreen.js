@@ -24,6 +24,7 @@ class LoadMenu {
 	startGame(level) {
 		this.selectedDifficulty = level;
 		this.gameEngine.start();
+        levelManager.advance();
 	}
 
 	drawLevelSelectText() {

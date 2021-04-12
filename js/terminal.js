@@ -6,6 +6,7 @@ let bomb;
 let puzzleImage;
 let trivia;
 let gameEngine;
+let levelManager;
 
 const gameStates = {
 	INIT:"init",
@@ -25,6 +26,10 @@ function init() {
   	textPosX = 0;
   	textPosY = canvas.height - 3;
   	gameEngine = new GameEngine();
+    fetch("data/levels.json").then(response => response.json()).then(json => {
+		let levels = json;
+        levelManager = new LevelManager(levels);
+	});
   	gameEngine.init();
   	loadMenu();
 }
