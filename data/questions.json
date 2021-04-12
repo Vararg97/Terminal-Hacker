@@ -1,0 +1,7 @@
+[
+	{
+		"question" : "What is the answer to my trivia question?",
+		"options" : [{"a":"foo"}, {"b":"bar"}, {"c":"baz"}, {"d":"faz"}],
+        "answer" : "a"
+	}
+]
