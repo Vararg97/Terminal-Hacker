@@ -7,6 +7,7 @@ let puzzleImage;
 let trivia;
 let gameEngine;
 let levelManager;
+let currentSong;
 
 const gameStates = {
 	INIT:"init",
@@ -21,6 +22,8 @@ let dpi = window.devicePixelRatio;
 
 function init() {
   	canvas = document.getElementById('terminal');
+    canvas.hidden = false;
+    document.getElementById("button").hidden = true;
   	ctx = canvas.getContext('2d');
   	fix_dpi(canvas);
   	textPosX = 0;
@@ -29,6 +32,7 @@ function init() {
     fetch("data/levels.json").then(response => response.json()).then(json => {
 		let levels = json;
         levelManager = new LevelManager(levels);
+        levelManager.init();
 	});
   	gameEngine.init();
   	loadMenu();
@@ -60,6 +64,7 @@ function loadTrivia() {
 		let question = json[Math.floor(Math.random() * (json.length))];
 		trivia = new Trivia(question);
 		trivia.init();
+        levelManager.advance("Level2");
 	});
 }
 
@@ -128,5 +133,8 @@ function writeText(text = '', x = textPosX, y = textPosY, appendTerminalString =
 	ctx.fillText(screenTxt, x, y);
 }
 
+function placeholder() {
+    
+}
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', placeholder());

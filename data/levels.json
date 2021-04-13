@@ -1,14 +1,20 @@
 {
     "levelIds" : {
-        "Menue":0,
+        "Menu":0,
         "Level1":1,
         "Level2":2,
         "Winner":3
     },
     "levels" : [
-        "Menue",
+        "Menu",
         "Level1",
         "Level2",
         "Winner"
+    ],
+    "songs" : [
+        "Parallax.mp3",
+        "Aloft_BGM.flac",
+        "Blackout_BGM.flac",
+        "Cipher_BGM.flac"
     ]
 }

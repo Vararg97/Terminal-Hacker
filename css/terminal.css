@@ -48,4 +48,24 @@ Credit to Chris Coyier for this old school terminal looking trick as published o
 
     pointer-events: none;
   }    
+
+/*following for start button*/
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
 }

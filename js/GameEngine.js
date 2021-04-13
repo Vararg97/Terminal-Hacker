@@ -17,6 +17,7 @@ class GameEngine {
 	restart = function() {
 		this.clearState();
 		menu = null;
+        levelManager.advance("Menu");
 		loadMenu();
 	}
 
@@ -92,7 +93,6 @@ class GameEngine {
 	  	case 27: 
 	  		//Escape key pressed
 	  		this.restart();
-            levelManager.advance("Menue");
 	  		break;
 	  	case 13: 
 	  		//Enter key pressed
@@ -115,13 +115,11 @@ class GameEngine {
 	          //Equals symbol key pressed
 	          this.gameState = gameStates.STAGE2;
 	          this.loadStage();
-              levelManager.advance("Level2");
 	          break;
 	       case 61:
 	          //Equals symbol key pressed
 	          this.gameState = gameStates.STAGE2;
 	          this.loadStage();
-              levelManager.advance("Level2");
 	          break;
 		default: 
 	  		if([gameStates.STARTED, gameStates.INIT, gameStates.STAGE1, gameStates.STAGE2].indexOf(this.gameState) > -1)  {
