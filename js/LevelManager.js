@@ -10,19 +10,18 @@ class LevelManager {
         if (requestedLevel == "") {
             this.levelNumber ++;
         } else {
-            if (this.checkLevel(requestedLevel) != undefined) {
-                this.levelNumber = this.checkLevel(requestedLevel);
-            } else {
+            if (this.checkLevel(requestedLevel) == undefined) {
                 console.log("level does not exist");
+            } else {
+                this.levelNumber = this.checkLevel(requestedLevel);
             }
         }
-        if ()
         this.currentLevel = this.levels[this.levelNumber];
     }
     
     checkLevel = function(levelToCheck) {
-        if (this.levelChecker[levelToCheck] == null || this.levelChecker[levelToCheck] == undefined) {
-            return "undefined";
+        if (this.levelChecker[levelToCheck] == undefined) {
+            return undefined;
         } else {
             return this.levelChecker[levelToCheck];
         }
